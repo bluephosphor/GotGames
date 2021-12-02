@@ -1,0 +1,13 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if false;
+    }
+    
+    match /games/{docID} {
+    	allow write: if request.auth.uid == "cgBThrOdj1fOtSnw9j3XM0w3DM53";
+      allow read: if true;
+    }
+  }
+}
