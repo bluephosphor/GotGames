@@ -40,11 +40,11 @@ export default {
     name: 'GameSearch',
     data(){
         return {
-            playerMin: '',
-            playerMax: '',
-            playTime: '',
-            timeUnit: '',
-            minAge: '',
+            playerMin: '2',
+            playerMax: '4',
+            playTime: '60',
+            timeUnit: 'minutes',
+            minAge: '12',
         }
     },
     methods: {

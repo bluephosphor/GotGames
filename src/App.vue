@@ -2,7 +2,7 @@
   <div class="container">
     <Header
       @toggle-game-search="toggleGameSearch"
-      title="Got Games?"
+      title="GOT Games?"
       :showGameSearch="showGameSearch"
     />
     <router-view class="view" :showGameSearch="showGameSearch"></router-view>

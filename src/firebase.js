@@ -1,5 +1,4 @@
 // Firebase imports
-
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore, collection, getDocs, query, where, orderBy, limit} from 'firebase/firestore';
@@ -29,14 +28,17 @@ const gamesCollection = collection(db, 'games');
 async function gameQuery(searchTerms){
     const q = query(
         gamesCollection, 
-        //where('minplayers',  '>=', searchTerms.playerMin),
-        where('maxplayers',  '<=', searchTerms.playerMax),
-        //where('playingtime', '<=', searchTerms.playTime),
-        //where('minage',      '<=', searchTerms.minAge),
-        limit(10)
+        where('playingtime', '<=', searchTerms.playTime),
+        orderBy('playingtime', 'desc'),
+        //limit(50)
     );
     const snap = await getDocs(q);
-    const list = snap.docs.map(doc => doc.data());
+    const list = snap.docs.map(doc => doc.data())
+                        .filter(item => 
+                            item.minplayers >= searchTerms.playerMin &&
+                            item.maxplayers <= searchTerms.playerMax &&
+                            item.minage     <= searchTerms.minAge
+                        )
     return list;
 }
 
