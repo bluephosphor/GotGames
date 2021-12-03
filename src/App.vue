@@ -1,11 +1,11 @@
 <template>
   <div class="container">
     <Header
-      @toggle-add-task="toggleAddTask"
-      title="Task Tracker"
-      :showAddTask="showAddTask"
+      @toggle-game-search="toggleGameSearch"
+      title="Got Games?"
+      :showGameSearch="showGameSearch"
     />
-    <router-view :showAddTask="showAddTask"></router-view>
+    <router-view class="view" :showGameSearch="showGameSearch"></router-view>
     <Footer />
   </div>
 </template>
@@ -22,12 +22,12 @@ export default {
   },
   data() {
     return {
-      showAddTask: false,
+      showGameSearch: false,
     };
   },
   methods: {
-    toggleAddTask() {
-      this.showAddTask = !this.showAddTask;
+    toggleGameSearch() {
+      this.showGameSearch = !this.showGameSearch;
     },
   },
 };
@@ -43,11 +43,16 @@ export default {
 body {
   font-family: "Poppins", sans-serif;
 }
-.container {
-  max-width: 500px;
-  margin: 30px auto;
+.view{
+  height: 75vh;
   overflow: auto;
-  min-height: 300px;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 700px;
+  margin: 25px auto;
+  height: 95vh;
   border: 1px solid steelblue;
   padding: 30px;
   border-radius: 5px;

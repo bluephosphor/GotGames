@@ -1,6 +1,6 @@
 <template>
     <footer>
-        <p>Copyright &copy; 2021</p>
+        <p>Copyright &copy; 2021 Jonny Andino</p>
         <router-link 
             v-show="homePage"
             to="/about">About
