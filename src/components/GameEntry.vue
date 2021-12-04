@@ -1,20 +1,35 @@
 <template>
-    <div @dblclick="$emit('toggle-reminder', game.id)" class="game">
-        <div><h3>{{ game.name }}</h3>
-        <p>Year: {{game.year}} </p>
-        <p>Playtime: {{game.playingtime}} minutes</p>
-        <p>{{game.minplayers}} - {{game.maxplayers}} players</p></div>
-        <img :src="game.thumbnail">
+  <div @dblclick="expand" class="game">
+    <div>
+      <h3>{{ game.name }}</h3>
+      <p>Year: {{ game.year }}</p>
+      <p>Playtime: {{ game.playingtime }} minutes</p>
+      <p>{{ game.minplayers }} - {{ game.maxplayers }} players ({{ game.recplayers }} Reccomended)</p>
+      <p v-show="this.expanded">
+          {{game.description}}
+      </p>
     </div>
+    <img :src="game.thumbnail" height="100"/>
+  </div>
 </template>
 
 <script>
 export default {
-    name: 'GameEntry',
+    name: "GameEntry",
     props: {
-        game: Object
+        game: Object,
     },
-}
+    data() {
+        return {
+            expanded: false,
+        };
+    },
+    methods: {
+        expand() {
+            this.expanded = !this.expanded
+        },
+    },
+};
 </script>
 
 <style scope>

@@ -1,28 +1,30 @@
 <template>
   <form @submit="onSubmit" class="search-form">
-    <div class ="form-row">
+    <div id="form-body" class="form-row">
       <div class="form-control form-column">
-          <label>How many players?</label>
-          
-          <div class="inline-row">
-            <span class="sublabel">Min:</span>
-            <input type="text" v-model="playerMin" name="player-min" placeholder="2" />
-          </div>
-          <div class="inline-row">
-            <span class="sublabel">Max:</span>
-            <input type="text" v-model="playerMax" name="player-max" placeholder="4" />
-          </div>
+        <label>How many players?</label>
+        <input
+          type="text"
+          v-model="playerNum"
+          name="player-num"
+          placeholder="2"
+        />
       </div>
       <div class="form-column">
         <div class="form-control">
           <label>Ideal Playtime?</label>
-            <div class="inline-row">
-              <input type="text" v-model="playTime" name="play-time" placeholder="1" />
-              <select name="time-unit" v-model="timeUnit">
-                <option value="hours" selected>Hours</option>
-                <option value="minutes">Minutes</option>
-              </select>
-            </div>
+          <div class="inline-row">
+            <input
+              type="text"
+              v-model="playTime"
+              name="play-time"
+              placeholder="1"
+            />
+            <select name="time-unit" v-model="timeUnit">
+              <option value="hours" selected>Hours</option>
+              <option value="minutes">Minutes</option>
+            </select>
+          </div>
         </div>
         <div class="form-control">
           <label>Minimum age?</label>
@@ -35,34 +37,30 @@
 </template>
 
 <script>
-
 export default {
-    name: 'GameSearch',
-    data(){
-        return {
-            playerMin: '2',
-            playerMax: '4',
-            playTime: '60',
-            timeUnit: 'minutes',
-            minAge: '12',
-        }
+  name: "GameSearch",
+  data() {
+    return {
+      playerNum: "2",
+      playTime: "30",
+      timeUnit: "minutes",
+      minAge: "12",
+    };
+  },
+  methods: {
+    onSubmit(e) {
+      e.preventDefault();
+
+      const searchTerms = {
+        playerNum: this.playerNum,
+        playTime: (this.timeUnit === 'minutes') ? this.playTime : this.playTime * 60,
+        minAge: this.minAge,
+      };
+
+      this.$emit("game-search", searchTerms);
     },
-    methods: {
-        onSubmit(e){
-            e.preventDefault();
-
-            const searchTerms = {
-              playerMin: this.playerMin,
-              playerMax: this.playerMax,
-              playTime: this.playTime,
-              timeUnit: this.timeUnit,
-              minAge: this.minAge,
-            }
-
-            this.$emit('game-search', searchTerms);
-        }
-    }
-}
+  },
+};
 </script>
 
 <style scoped>
@@ -74,25 +72,24 @@ export default {
   border: 1px solid #555;
   border-radius: 5px;
 }
-.form-row{
+.form-row {
   display: flex;
   justify-content: space-between;
 }
-.form-column{
+.form-column {
   display: flex;
   flex-direction: column;
-  width:48%;
+  width: 48%;
   padding: 16px;
   margin: 6px;
 }
-.inline-row{
-  display:flex;
+.inline-row {
+  display: flex;
   width: 100%;
   justify-content: space-between;
   align-items: flex-start;
-  
 }
-.sublabel{
+.sublabel {
   margin-bottom: 44px;
 }
 .form-control label {
@@ -105,17 +102,25 @@ export default {
   padding: 3px 7px;
   font-size: 17px;
 }
-.inline-row input{
-  width:57%;
+.inline-row input {
+  width: 57%;
 }
 .form-control select {
   height: 40px;
   padding: 3px 7px;
   font-size: 17px;
 }
-.btn-block{
+.btn-block {
   max-width: 96%;
   margin-bottom: 12px;
   justify-self: center;
+}
+@media screen and (max-width: 600px)  {
+    #form-body{
+        flex-direction: column
+    }
+    .form-column{
+        width: 95%
+    }
 }
 </style>

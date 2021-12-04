@@ -18,7 +18,7 @@ export default {
   name: "App",
   components: {
     Header,
-    Footer
+    Footer,
   },
   data() {
     return {
@@ -43,7 +43,7 @@ export default {
 body {
   font-family: "Poppins", sans-serif;
 }
-.view{
+.view {
   height: 75vh;
   overflow: auto;
 }

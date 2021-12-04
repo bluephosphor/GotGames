@@ -25,21 +25,38 @@ const analytics = getAnalytics(app);
 const db = getFirestore(app);
 const gamesCollection = collection(db, 'games');
 
-async function gameQuery(searchTerms){
+function dom_decoder (str) {
+    let parser = new DOMParser();
+    let dom = parser.parseFromString(`<string> ${str} </string>`, 'text/html');
+    return dom.querySelector('string').innerText;
+}
+
+function decoder (str) {
+    var textArea = document.createElement('textarea');
+    textArea.innerHTML = str;
+    return textArea.innerText;
+}
+
+export default {
+  gameQuery: async function(searchTerms){
     const q = query(
         gamesCollection, 
-        where('playingtime', '<=', searchTerms.playTime),
-        orderBy('playingtime', 'desc'),
+        where('recplayers', '==', searchTerms.playerNum),
+        //orderBy('playingtime', 'desc'),
         //limit(50)
     );
     const snap = await getDocs(q);
     const list = snap.docs.map(doc => doc.data())
-                        .filter(item => 
-                            item.minplayers >= searchTerms.playerMin &&
-                            item.maxplayers <= searchTerms.playerMax &&
-                            item.minage     <= searchTerms.minAge
-                        )
+    .filter(item => {
+            
+            item.description = dom_decoder(item.description);
+            
+            return (
+                item.minage      <= searchTerms.minAge &&
+                item.playingtime <= searchTerms.playTime
+            )
+        }
+    );
     return list;
+  },
 }
-
-export default gameQuery;

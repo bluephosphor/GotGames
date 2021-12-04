@@ -11,9 +11,10 @@
 </template>
 
 <script>
-import GamesList from "../components/GamesList";
+import GamesList  from "../components/GamesList";
 import GameSearch from "../components/GameSearch";
-import gameQuery from "@/firebase"
+import fb         from "@/firebase";
+
 export default {
   name: 'Home',
   props: {
@@ -30,11 +31,11 @@ export default {
   },
   methods: {
     async gameSearch(searchTerms){
-      this.games = await gameQuery(searchTerms);
+      this.games = await fb.gameQuery(searchTerms);
     }
   },
   async created() {
-    //this.games = await loadGamesList();
+    //this.games = await fb.loadGamesList();
   },
 }
 </script>
