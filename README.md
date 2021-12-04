@@ -1,5 +1,3 @@
-### Technologies used: <span style="color:cyan">HTML</span> | <span style="color:pink">CSS</span> | <span style="color:yellow">JavaScript</span> <span style="color:green">(Vue)</span> | <span style="color:orange">Firebase</span>
-
 ![GOT Games](https://bluephosphor.github.io/portfolio/asset/img/projects/gotgames.png)
 
 <a class="source-link" target="_blank" href="https://portfolio-9bd65.web.app/">[Full page version]</a>
