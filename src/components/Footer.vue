@@ -17,6 +17,11 @@
         margin-top: 30px;
         text-align: center;
     }
+    @media screen and (max-width: 600px){
+        footer{
+            margin-top: 10px;
+        }
+    }
 </style>
 
 <script>

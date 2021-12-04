@@ -52,4 +52,10 @@ export default {
   align-items: center;
   justify-content: space-between;
 }
+@media screen and (max-width: 600px){
+    .game{
+        font-size: 0.8em;
+        margin: 5px 0px;
+    }
+}
 </style>

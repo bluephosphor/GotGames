@@ -44,7 +44,7 @@ body {
   font-family: "Poppins", sans-serif;
 }
 .view {
-  height: 75vh;
+  height: 78vh;
   overflow: auto;
 }
 .container {
@@ -79,5 +79,13 @@ body {
 .btn-block {
   display: block;
   width: 100%;
+}
+@media screen and (max-width: 600px){
+    .container{
+        border: none;
+        margin: 0px;
+        padding: 10px;
+        height: 100vh;
+    }
 }
 </style>

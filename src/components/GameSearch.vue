@@ -1,7 +1,7 @@
 <template>
   <form @submit="onSubmit" class="search-form">
-    <div id="form-body" class="form-row">
-      <div class="form-control form-column">
+      <div class="form-column">
+        <div class="form-control">
         <label>How many players?</label>
         <input
           type="text"
@@ -10,7 +10,6 @@
           placeholder="2"
         />
       </div>
-      <div class="form-column">
         <div class="form-control">
           <label>Ideal Playtime?</label>
           <div class="inline-row">
@@ -31,7 +30,6 @@
           <input type="text" v-model="minAge" name="min-age" placeholder="10" />
         </div>
       </div>
-    </div>
     <input type="submit" value="Submit" class="btn btn-block" />
   </form>
 </template>
@@ -79,7 +77,7 @@ export default {
 .form-column {
   display: flex;
   flex-direction: column;
-  width: 48%;
+  width: 95%;
   padding: 16px;
   margin: 6px;
 }
@@ -103,12 +101,13 @@ export default {
   font-size: 17px;
 }
 .inline-row input {
-  width: 57%;
+  width: 60%;
 }
 .form-control select {
   height: 40px;
   padding: 3px 7px;
   font-size: 17px;
+  width: 35%;
 }
 .btn-block {
   max-width: 96%;
@@ -116,11 +115,8 @@ export default {
   justify-self: center;
 }
 @media screen and (max-width: 600px)  {
-    #form-body{
-        flex-direction: column
-    }
-    .form-column{
-        width: 95%
+    .form-control label{
+        font-size: 1em
     }
 }
 </style>
