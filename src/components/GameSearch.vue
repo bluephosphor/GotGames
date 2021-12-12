@@ -1,7 +1,7 @@
 <template>
   <form @submit="onSubmit" class="search-form">
-      <div class="form-column">
-        <div class="form-control">
+    <div class="form-column">
+      <div class="form-control">
         <label>How many players?</label>
         <input
           type="text"
@@ -10,26 +10,26 @@
           placeholder="2"
         />
       </div>
-        <div class="form-control">
-          <label>Ideal Playtime?</label>
-          <div class="inline-row">
-            <input
-              type="text"
-              v-model="playTime"
-              name="play-time"
-              placeholder="1"
-            />
-            <select name="time-unit" v-model="timeUnit">
-              <option value="hours" selected>Hours</option>
-              <option value="minutes">Minutes</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-control">
-          <label>Minimum age?</label>
-          <input type="text" v-model="minAge" name="min-age" placeholder="10" />
+      <div class="form-control">
+        <label>Ideal Playtime?</label>
+        <div class="inline-row">
+          <input
+            type="text"
+            v-model="playTime"
+            name="play-time"
+            placeholder="1"
+          />
+          <select name="time-unit" v-model="timeUnit">
+            <option value="hours" selected>Hours</option>
+            <option value="minutes">Minutes</option>
+          </select>
         </div>
       </div>
+      <div class="form-control">
+        <label>Minimum age?</label>
+        <input type="text" v-model="minAge" name="min-age" placeholder="10" />
+      </div>
+    </div>
     <input type="submit" value="Submit" class="btn btn-block" />
   </form>
 </template>
@@ -51,7 +51,8 @@ export default {
 
       const searchTerms = {
         playerNum: this.playerNum,
-        playTime: (this.timeUnit === 'minutes') ? this.playTime : this.playTime * 60,
+        playTime:
+          this.timeUnit === "minutes" ? this.playTime : this.playTime * 60,
         minAge: this.minAge,
       };
 
@@ -114,9 +115,9 @@ export default {
   margin-bottom: 12px;
   justify-self: center;
 }
-@media screen and (max-width: 600px)  {
-    .form-control label{
-        font-size: 1em
-    }
+@media screen and (max-width: 600px) {
+  .form-control label {
+    font-size: 1em;
+  }
 }
 </style>
